@@ -1,9 +1,3 @@
-In this mini-project, you will develop models to classify the image data. You will use the combo MNIST dataset
-(https://www.kaggle.com/c/comp-551-fall-2021/data) provided to you for this problem. Combo MNIST dataset has
-60,000 images for training your classifier. Out of the 60,000 training images, 30,000 images have labels associated
-with them. The remaining 30,000 images do not have labels. You can get creative to use them to train your classifier.
-Sample images are shown in Figure 1 to give you an idea of the image dataset. The dataset also comes with 15,000
-test images whose predictions has to be uploaded to Kaggle to get a score. Roughly 40% these 15,000 images are used
-to show the rankings in the public leaderboard, while the remaining 60% form private leaderboard which is hidden
-from everyone. The final rankings are based on the private leaderboard. Please read the evaluation page on Kaggle
-(https://www.kaggle.com/c/comp-551-fall-2021/overview/evaluation) carefully for formatting your submission file.
+We investigated strategies to classify multi-label image data using CNNs with PyTorch, including using relative weighted losses in a [multi-label model](https://learnopencv.com/multi-label-image-classification-with-pytorch/), comparing the use of either [MobileNetV2](https://arxiv.org/abs/1801.04381) or [ResNet50](https://www.cv-foundation.org/openaccess/content_cvpr_2016/papers/He_Deep_Residual_Learning_CVPR_2016_paper.pdf) as a backbone model; creating auxiliary tasks using pseudo-labelled data as in the SESEMI technique, for both previously labelled and unlabeled data; creating pseudo-labels; augmenting the labelled training data and adapting learning rates.
+
+Our CNN architectures comprised a backbone and several heads: one for each label implementing multi-label classification and one for implementing SESEMI semi-supervised learning using a pseudo-labelled dataset. Training is done in three phases: first, with the unaugmented labelled training data; second, with the augmented labelled data; and third, with pseudo-labelled training data generated from the unlabeled training data. In later stages of training, the learning rate was manually decreased to not jump past optimal results.
